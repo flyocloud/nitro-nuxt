@@ -1,6 +1,9 @@
 import { ApiClient, ConfigApi, PagesApi, EntitiesApi, SitemapApi, ContentApi } from '@flyodev/nitrocms-js
 import { Block, Page } from '@flyodev/nitrocms-vue3'
 
+
+import { defineNuxtPlugin } from '#app'
+
 export default defineNuxtPlugin(nuxtApp => {
     
     nuxtApp.vueApp.component('FlyoPage', Page)

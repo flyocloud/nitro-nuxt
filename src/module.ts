@@ -1,5 +1,6 @@
 import { defineNuxtModule, addPlugin, createResolver } from '@nuxt/kit'
-
+import { fileURLToPath } from 'url'
+import { resolve } from 'path'
 export interface ModuleOptions {
   /**
    * Flyo Nitro CMS Auth Token
@@ -26,8 +27,13 @@ export default defineNuxtModule<ModuleOptions>({
       throw new Error('Missing `FLYO_TOKEN` in `.env`')
     }
 
-    // Create resolver to resolve relative paths
     const { resolve } = createResolver(import.meta.url)
-    addPlugin(resolve('./runtime/plugin'))
+
+    // Transpile runtime
+    const runtimeDir = resolve('./runtime')
+    nuxt.options.build.transpile.push(runtimeDir)
+
+    // Add plugin to load user before bootstrap
+    addPlugin(resolve(runtimeDir, 'flyo.plugin'))
   }
 })
