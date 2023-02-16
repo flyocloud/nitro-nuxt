@@ -17,19 +17,17 @@
     "dist"
   ],
   "scripts": {
-    "prepack": "nuxt-module-build",
+    "build": "nuxt-module-build",
     "publish": "npm publish --access=public"
-  },
-  "peerDependencies": {
-    "nuxt": "^3.1.2"
   },
   "devDependencies": {
     "@nuxt/module-builder": "latest",
-    "nuxt": "^3.1.2"
+    "@types/node": "^18.13.0",
+    "nuxt": "^3.2.0"
   },
   "dependencies": {
     "@flyodev/nitrocms-js": "^1.0.0",
     "@flyodev/nitrocms-vue3": "^1.0.0",
-    "@nuxt/kit": "npm:@nuxt/kit-edge@latest"
+    "@nuxt/kit": "^3.2.0"
   }
 }
