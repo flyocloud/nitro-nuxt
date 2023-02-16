@@ -1,8 +1,7 @@
-import { ApiClient, ConfigApi, PagesApi, EntitiesApi, SitemapApi, ContentApi } from '@flyodev/nitrocms-js
+import { ApiClient, ConfigApi, PagesApi, EntitiesApi, SitemapApi, ContentApi } from '@flyodev/nitrocms-js'
 import { Block, Page } from '@flyodev/nitrocms-vue3'
 
-
-import { defineNuxtPlugin } from '#app'
+import { defineNuxtPlugin, useRoute, useRuntimeConfig } from 'nuxt/app'
 
 export default defineNuxtPlugin(nuxtApp => {
     
@@ -47,7 +46,7 @@ export default defineNuxtPlugin(nuxtApp => {
                     const route = useRoute()
                     const token = route.query?.token || false
 
-                    if (token && runtimeConfig.public.ALLOW_EDIT) {
+                    if (token) {
                         return true
                     }
 
