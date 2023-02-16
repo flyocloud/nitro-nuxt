@@ -1,0 +1,35 @@
+{
+  "name": "@flyodev/nitrocms-nuxt3",
+  "version": "1.0.0",
+  "description": "Nuxt3 Plugin for Nitro CMS",
+  "repository": "git@github.com:flyocloud/nitrocms-nuxt3.git",
+  "author": "Basil Suter <git@nadar.io>",
+  "license": "MIT",
+  "exports": {
+    ".": {
+      "import": "./dist/module.mjs",
+      "require": "./dist/module.cjs"
+    }
+  },
+  "main": "./dist/module.cjs",
+  "types": "./dist/types.d.ts",
+  "files": [
+    "dist"
+  ],
+  "scripts": {
+    "prepack": "nuxt-module-build",
+    "publish": "npm publish --access=public"
+  },
+  "peerDependencies": {
+    "nuxt": "^3.1.2"
+  },
+  "devDependencies": {
+    "@nuxt/module-builder": "latest",
+    "nuxt": "^3.1.2"
+  },
+  "dependencies": {
+    "@flyodev/nitrocms-js": "^1.0.0",
+    "@flyodev/nitrocms-vue3": "^1.0.0",
+    "@nuxt/kit": "npm:@nuxt/kit-edge@latest"
+  }
+}
