@@ -2,13 +2,16 @@ import { defineNuxtModule, createResolver, addPlugin } from '@nuxt/kit';
 
 const module = defineNuxtModule({
   meta: {
-    name: "flyo",
+    name: "@flyodev/nitrocms-nuxt3",
     configKey: "flyo"
   },
   defaults: {
-    token: ""
+    token: process.env.FLYO_TOKEN
   },
-  async setup(moduleOptions, nuxt) {
+  async setup(options, nuxt) {
+    if (!options.token) {
+      throw new Error("Missing `FLYO_TOKEN` in `.env`");
+    }
     const { resolve } = createResolver(import.meta.url);
     addPlugin(resolve("./runtime/plugin"));
   }

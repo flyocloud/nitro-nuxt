@@ -6,6 +6,15 @@ A Nuxt 3 Plugin for Nitro CMS
 yarn add @flyodev/nitrocms-nuxt3
 ```
 
+nuxt.config.js
+
+```
+modules: ['@flyodev/nitrocms-nuxt3'],
+flyo: {
+  token: process.env.TOKEN
+}
+```
+
 ## Links
 
 + https://nuxt.com/docs/guide/going-further/modules

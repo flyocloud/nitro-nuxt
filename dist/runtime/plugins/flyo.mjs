@@ -6,13 +6,13 @@ export default defineNuxtPlugin(nuxtApp => {
     nuxtApp.vueApp.component('FlyoPage', Page)
     nuxtApp.vueApp.component('FlyoBlock', Block)
 
-    const runtimeConfig = useRuntimeConfig()
+    const { token } = useRuntimeConfig().flyo
 
     var defaultClient = ApiClient.instance
     defaultClient.defaultHeaders = {}
 
     var ApiKeyAuth = defaultClient.authentications["ApiKeyAuth"]
-    ApiKeyAuth.apiKey = runtimeConfig.public.TOKEN
+    ApiKeyAuth.apiKey = token
 
     const apis = {
         configApi: new ConfigApi(),
