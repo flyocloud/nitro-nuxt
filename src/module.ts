@@ -37,3 +37,11 @@ export default defineNuxtModule<ModuleOptions>({
     addPlugin(resolve(runtimeDir, 'flyo.plugin'))
   }
 })
+
+declare module '@nuxt/schema' {
+  interface ConfigSchema {
+    publicRuntimeConfig?: {
+      flyo?: ModuleOptions
+    }
+  }
+}

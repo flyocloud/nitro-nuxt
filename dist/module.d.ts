@@ -10,4 +10,12 @@ interface ModuleOptions {
 }
 declare const _default: _nuxt_schema.NuxtModule<ModuleOptions>;
 
+declare module '@nuxt/schema' {
+    interface ConfigSchema {
+        publicRuntimeConfig?: {
+            flyo?: ModuleOptions;
+        };
+    }
+}
+
 export { ModuleOptions, _default as default };
