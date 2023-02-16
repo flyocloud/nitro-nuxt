@@ -1,6 +1,5 @@
 import { defineNuxtModule, addPlugin, createResolver } from '@nuxt/kit'
-import { fileURLToPath } from 'url'
-import { resolve } from 'path'
+import { defu } from 'defu'
 export interface ModuleOptions {
   /**
    * Flyo Nitro CMS Auth Token
@@ -35,6 +34,10 @@ export default defineNuxtModule<ModuleOptions>({
 
     // Add plugin to load user before bootstrap
     addPlugin(resolve(runtimeDir, 'flyo.plugin'))
+
+    nuxt.options.runtimeConfig.public.flyo = defu(nuxt.options.runtimeConfig.flyo, {
+      token: options.token,
+    })
   }
 })
 
