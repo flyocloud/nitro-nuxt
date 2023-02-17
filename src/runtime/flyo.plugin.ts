@@ -1,22 +1,25 @@
-import { ApiClient, ConfigApi, PagesApi, EntitiesApi, SitemapApi, ContentApi } from '@flyodev/nitrocms-js'
-import { Block, Page } from '@flyodev/nitrocms-vue3'
-
-import { defineNuxtPlugin, useRoute, useRuntimeConfig } from 'nuxt/app'
+//import { ApiClient, ConfigApi, PagesApi, EntitiesApi, SitemapApi, ContentApi } from '@flyodev/nitrocms-js'
+import { defineNuxtPlugin, useRuntimeConfig } from 'nuxt/app'
+import { ApiClient } from '@flyodev/nitrocms-js'
+import Block from '@flyodev/nitrocms-vue3'
+import Page from '@flyodev/nitrocms-vue3'
 
 export default defineNuxtPlugin(nuxtApp => {
     
-    /*
     nuxtApp.vueApp.component('FlyoPage', Page)
     nuxtApp.vueApp.component('FlyoBlock', Block)
 
     const { token } = useRuntimeConfig().flyo
 
-    var defaultClient = ApiClient.instance
+    const defaultClient = ApiClient.instance // <-------------- import Does not work
     defaultClient.defaultHeaders = {}
 
-    var ApiKeyAuth = defaultClient.authentications["ApiKeyAuth"]
+    const ApiKeyAuth = defaultClient.authentications["ApiKeyAuth"]
     ApiKeyAuth.apiKey = token
 
+    console.log(token)
+
+    /*
     const apis = {
         configApi: new ConfigApi(),
         pagesApi: new PagesApi(),
@@ -24,17 +27,16 @@ export default defineNuxtPlugin(nuxtApp => {
         sitemapApi: new SitemapApi(),
         contentApi: new ContentApi(),
     }
-
+    */
     let config = null
 
     return {
         provide: {
             flyo: {
-                ...apis,
                 getConfig: async () => {
                     try {
                         if (!config) {
-                            config = await apis.configApi.config()
+                            config = await new ConfigApi().configApi.config()
                         }
 
                         return config
@@ -43,38 +45,7 @@ export default defineNuxtPlugin(nuxtApp => {
                         return null
                     }
                 },
-                isEditAllowed: () => {
-                    const route = useRoute()
-                    const token = route.query?.token || false
-
-                    if (token) {
-                        return true
-                    }
-
-                    return false
-                },
-                async updateContent(newValue, contentIdentifier, uid, pageId) {
-                    const route = useRoute()
-
-                    try {
-                        const res = await apis.contentApi
-                            .putContent(pageId, {
-                                value: newValue,
-                                identifier: contentIdentifier,
-                                uid: uid,
-                                token: route.query.token,
-                            })
-
-                        return res
-                    } catch (e) {
-                        console.error(e)
-                        return e
-                    }
-                },
             },
         },
     }
-    */
-
-    console.log('hi')
 })
