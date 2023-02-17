@@ -5,6 +5,7 @@ import { defineNuxtPlugin, useRoute, useRuntimeConfig } from 'nuxt/app'
 
 export default defineNuxtPlugin(nuxtApp => {
     
+    /*
     nuxtApp.vueApp.component('FlyoPage', Page)
     nuxtApp.vueApp.component('FlyoBlock', Block)
 
@@ -73,4 +74,7 @@ export default defineNuxtPlugin(nuxtApp => {
             },
         },
     }
+    */
+
+    console.log('hi')
 })
