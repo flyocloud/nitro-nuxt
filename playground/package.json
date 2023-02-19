@@ -1,0 +1,15 @@
+
+
+{
+    "private": true,
+    "scripts": {
+      "demo": "nuxt dev",
+      "build": "nuxt build",
+      "generate": "nuxt generate",
+      "start": "nuxt preview"
+    },
+    "devDependencies": {
+      "nuxt": "^3.0.0",
+      "@flyodev/nitrocms-nuxt3": "^0.0.1"
+    }
+  }
