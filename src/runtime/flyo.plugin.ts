@@ -12,20 +12,18 @@ export default defineNuxtPlugin(nuxtApp => {
     const { token } = useRuntimeConfig().flyo
 
 
-    nuxtApp.hook('app:created', () => {
+    /*nuxtApp.hook('app:created', () => {
         console.log(ApiClient) // <-------------- import Does not work
     })
+    */
     
 
-    /*
+    
     const defaultClient = ApiClient.instance // <-------------- import Does not work
     defaultClient.defaultHeaders = {}
 
     const ApiKeyAuth = defaultClient.authentications["ApiKeyAuth"]
     ApiKeyAuth.apiKey = token
-    */
-
-    console.log(token)
 
     /*
     const apis = {
@@ -41,7 +39,7 @@ export default defineNuxtPlugin(nuxtApp => {
     return {
         provide: {
             flyo: {
-                getConfig: async () => {
+                config: async () => {
                     try {
                         if (!config) {
                             config = await new ConfigApi().configApi.config()

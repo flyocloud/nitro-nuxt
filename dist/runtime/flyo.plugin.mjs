@@ -6,15 +6,15 @@ export default defineNuxtPlugin((nuxtApp) => {
   nuxtApp.vueApp.component("FlyoPage", Page);
   nuxtApp.vueApp.component("FlyoBlock", Block);
   const { token } = useRuntimeConfig().flyo;
-  nuxtApp.hook("app:created", () => {
-    console.log(ApiClient);
-  });
-  console.log(token);
+  const defaultClient = ApiClient.instance;
+  defaultClient.defaultHeaders = {};
+  const ApiKeyAuth = defaultClient.authentications["ApiKeyAuth"];
+  ApiKeyAuth.apiKey = token;
   let config = null;
   return {
     provide: {
       flyo: {
-        getConfig: async () => {
+        config: async () => {
           try {
             if (!config) {
               config = await new ConfigApi().configApi.config();
