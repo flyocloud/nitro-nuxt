@@ -7,7 +7,7 @@ const module = defineNuxtModule({
     configKey: "flyo"
   },
   defaults: {
-    token: process.env.FLYO_TOKEN
+    token: process.env.FLYO_TOKEN || ""
   },
   async setup(options, nuxt) {
     if (!options.token) {
