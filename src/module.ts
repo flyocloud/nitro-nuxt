@@ -1,4 +1,4 @@
-import { defineNuxtModule, addPlugin, createResolver } from '@nuxt/kit'
+import { defineNuxtModule, addPlugin, createResolver, extendViteConfig} from '@nuxt/kit'
 import { defu } from 'defu'
 export interface ModuleOptions {
   /**
@@ -34,6 +34,12 @@ export default defineNuxtModule<ModuleOptions>({
 
     // Add plugin to load user before bootstrap
     addPlugin(resolve(runtimeDir, 'flyo.plugin'))
+
+    extendViteConfig((config) => {
+      config.optimizeDeps?.include?.push(
+        ...['@flyodev/nitrocms-js']
+      )
+    })
 
     nuxt.options.runtimeConfig.public.flyo = defu(nuxt.options.runtimeConfig.flyo, {
       token: options.token,

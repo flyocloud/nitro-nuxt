@@ -1,4 +1,4 @@
-import { defineNuxtModule, createResolver, addPlugin } from '@nuxt/kit';
+import { defineNuxtModule, createResolver, addPlugin, extendViteConfig } from '@nuxt/kit';
 import { defu } from 'defu';
 
 const module = defineNuxtModule({
@@ -17,6 +17,11 @@ const module = defineNuxtModule({
     const runtimeDir = resolve("./runtime");
     nuxt.options.build.transpile.push(runtimeDir);
     addPlugin(resolve(runtimeDir, "flyo.plugin"));
+    extendViteConfig((config) => {
+      config.optimizeDeps?.include?.push(
+        ...["@flyodev/nitrocms-js"]
+      );
+    });
     nuxt.options.runtimeConfig.public.flyo = defu(nuxt.options.runtimeConfig.flyo, {
       token: options.token
     });
