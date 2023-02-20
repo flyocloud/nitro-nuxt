@@ -1,57 +1,37 @@
 //import { ApiClient, ConfigApi, PagesApi, EntitiesApi, SitemapApi, ContentApi } from '@flyodev/nitrocms-js'
 import { defineNuxtPlugin, useRuntimeConfig } from 'nuxt/app'
-import { ApiClient, ConfigApi } from '@flyodev/nitrocms-js'
-import Block from '@flyodev/nitrocms-vue3'
-import Page from '@flyodev/nitrocms-vue3'
+import { ApiClient } from '@flyodev/nitrocms-js'
+import { Block, Page } from '@flyodev/nitrocms-vue3'
+import { useFlyoConfig } from './composables/useFlyoConfig'
+import { useRouter } from '#imports'
 
-export default defineNuxtPlugin(nuxtApp => {
+export default defineNuxtPlugin(async (nuxtApp) => {
 
-    nuxtApp.vueApp.component('FlyoPage', Page)
-    nuxtApp.vueApp.component('FlyoBlock', Block)
+  nuxtApp.vueApp.component('FlyoPage', Page)
+  nuxtApp.vueApp.component('FlyoBlock', Block)
 
-    const { token } = useRuntimeConfig().flyo
+  const { token, defaultPageRoute, registerPageRoutes} = useRuntimeConfig().flyo
 
+  const defaultClient = ApiClient.instance
+  defaultClient.defaultHeaders = {}
 
-    nuxtApp.hook('app:created', (e) => {
-        
-        console.log('e', e) // <-------------- import Does not work
+  const ApiKeyAuth = defaultClient.authentications["ApiKeyAuth"]
+  ApiKeyAuth.apiKey = token
+  
+  const { fetchConfig } = useFlyoConfig()
+
+  const config = await fetchConfig()
+
+  if (registerPageRoutes) {
+    const router = useRouter()
+    config.pages.forEach(route => {
+      router.addRoute(
+        {
+          path: `/${route}`, 
+          component: () => import(`~/pages/${defaultPageRoute}.vue`)
+          
+        }
+      )
     })
-
-
-
-    const defaultClient = ApiClient.instance // <-------------- import Does not work
-    defaultClient.defaultHeaders = {}
-
-    const ApiKeyAuth = defaultClient.authentications["ApiKeyAuth"]
-    ApiKeyAuth.apiKey = token
-
-    /*
-    const apis = {
-        configApi: new ConfigApi(),
-        pagesApi: new PagesApi(),
-        entitiesApi: new EntitiesApi(),
-        sitemapApi: new SitemapApi(),
-        contentApi: new ContentApi(),
-    }
-    */
-    let config = null
-
-    return {
-        provide: {
-            flyo: {
-                config: async () => {
-                    try {
-                        if (!config) {
-                            config = await new ConfigApi().config()
-                        }
-
-                        return config
-                    } catch (e) {
-                        console.error(e)
-                        return null
-                    }
-                },
-            },
-        },
-    }
+  }
 })

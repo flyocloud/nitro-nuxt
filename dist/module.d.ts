@@ -7,6 +7,8 @@ interface ModuleOptions {
      * @type string
      */
     token: string;
+    registerPageRoutes: boolean;
+    defaultPageRoute: string;
 }
 declare const _default: _nuxt_schema.NuxtModule<ModuleOptions>;
 

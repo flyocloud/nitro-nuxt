@@ -15,6 +15,16 @@ flyo: {
 }
 ```
 
+## Local Dev
+
+package.json
+
+```
+"dependencies": {
+    "@flyodev/nitrocms-nuxt3": "./../nitrocms-nuxt3",
+    ...
+```
+
 ## Links
 
 + https://nuxt.com/docs/guide/going-further/modules
