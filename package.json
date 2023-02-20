@@ -1,6 +1,6 @@
 {
   "name": "@flyodev/nitrocms-nuxt3",
-  "version": "1.0.8",
+  "version": "1.0.9",
   "description": "Nuxt3 Plugin for Nitro CMS",
   "repository": "git@github.com:flyocloud/nitrocms-nuxt3.git",
   "author": "Basil Suter <git@nadar.io>",

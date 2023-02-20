@@ -24,12 +24,12 @@ export default defineNuxtPlugin(async (nuxtApp) => {
 
   if (registerPageRoutes) {
     const router = useRouter()
-    config.pages.forEach(route => {
+    config.pages.forEach((route: object) => {
       router.addRoute(
         {
+          name: `${route}`,
           path: `/${route}`, 
           component: () => import(`~/pages/cms.vue`) // using ${defaultPageRoute} does not work
-          
         }
       )
     })

@@ -18,6 +18,7 @@ export default defineNuxtPlugin(async (nuxtApp) => {
     config.pages.forEach((route) => {
       router.addRoute(
         {
+          name: `${route}`,
           path: `/${route}`,
           component: () => import("~/pages/cms.vue")
           // using ${defaultPageRoute} does not work
