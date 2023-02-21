@@ -22,8 +22,7 @@ export const useFlyoContent = (pageId: number) => {
         uid: blockUniqueid,
         token: route.query.token
       }
-      console.log(payload)
-      await new ContentApi().putContent(pageId, payload)
+      await new ContentApi().putContent(pageId, {content: payload})
     } catch (e) {
       console.error(e)
     }

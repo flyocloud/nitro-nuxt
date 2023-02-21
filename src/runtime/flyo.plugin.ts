@@ -15,6 +15,9 @@ export default defineNuxtPlugin(async (nuxtApp) => {
   const defaultClient = ApiClient.instance
   defaultClient.defaultHeaders = {}
 
+  // for development purposes change the base path to the api. must end with `.../nitro`
+  // defaultClient.basePath = 'http://flyoapi-web-api.dev.heartbeat.gmbh:7171/nitro'
+
   const ApiKeyAuth = defaultClient.authentications["ApiKeyAuth"]
   ApiKeyAuth.apiKey = token
   
