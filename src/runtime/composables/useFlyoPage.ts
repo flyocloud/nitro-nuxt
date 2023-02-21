@@ -1,5 +1,6 @@
 import { ref } from 'vue'
 import { PagesApi } from '@flyodev/nitrocms-js'
+import { useFlyoContent } from './useFlyoContent'
 
 
 /**
@@ -8,19 +9,23 @@ import { PagesApi } from '@flyodev/nitrocms-js'
  * @see https://nuxt.com/docs/guide/directory-structure/composables
  * @see https://vuejs.org/guide/reusability/composables.html
  */
-export function useFlyoPage(slug: string) {
+export const useFlyoPage = async(slug: string): Promise<any> => {
 
   const page = ref(null)
   const error = ref(null)
 
-  new PagesApi().page({slug: slug}).then((response: {}) => {
-    page.value = response
-  }, (error: any) => {
+  try {
+    page.value = await new PagesApi().page({slug: slug})
+  } catch (error) {
     error.value = error
-  })
+  }
+  
+  const { putContent, isEditable } = useFlyoContent(page.value.id)
   
   return {
     page: page,
-    error: error
+    error: error,
+    putContent,
+    isEditable
   }
 }

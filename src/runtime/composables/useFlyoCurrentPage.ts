@@ -4,8 +4,8 @@ import { useRoute } from '#imports'
 /**
  * Resolves the current page route
  */
-export function useFlyoCurrentPage() {
+export const useFlyoCurrentPage = async(): Promise<any> => {
 
   const route = useRoute()
-  return useFlyoPage(route.path)
+  return await useFlyoPage(route.path)
 }

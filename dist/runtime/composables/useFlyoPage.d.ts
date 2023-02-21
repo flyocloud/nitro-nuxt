@@ -4,7 +4,4 @@
  * @see https://nuxt.com/docs/guide/directory-structure/composables
  * @see https://vuejs.org/guide/reusability/composables.html
  */
-export declare function useFlyoPage(slug: string): {
-    page: import("vue").Ref<null>;
-    error: import("vue").Ref<null>;
-};
+export declare const useFlyoPage: (slug: string) => Promise<any>;

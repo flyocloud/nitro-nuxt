@@ -1,15 +1,19 @@
 import { ref } from "vue";
 import { PagesApi } from "@flyodev/nitrocms-js";
-export function useFlyoPage(slug) {
+import { useFlyoContent } from "./useFlyoContent.mjs";
+export const useFlyoPage = async (slug) => {
   const page = ref(null);
   const error = ref(null);
-  new PagesApi().page({ slug }).then((response) => {
-    page.value = response;
-  }, (error2) => {
+  try {
+    page.value = await new PagesApi().page({ slug });
+  } catch (error2) {
     error2.value = error2;
-  });
+  }
+  const { putContent, isEditable } = useFlyoContent(page.value.id);
   return {
     page,
-    error
+    error,
+    putContent,
+    isEditable
   };
-}
+};
