@@ -1,10 +1,16 @@
-import { useFlyoPage } from '@flyodev/nitrocms-vue3'
-import { useRoute } from '#imports'
+import { useRoute, inject } from '#imports'
 
 /**
  * Resolves the current page route
  */
-export const useFlyoCurrentPage = async(): Promise<any> => {
+export const useFlyoCurrentPage = (): Object => {
+  const { page } = inject('flyo')
+  const { fetch } = page
+
   const route = useRoute()
-  return await useFlyoPage(route.path)
+  fetch(route.path)
+
+  return {
+    ...page
+  }
 }

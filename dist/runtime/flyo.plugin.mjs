@@ -7,13 +7,11 @@ export default defineNuxtPlugin(async ({ vueApp }) => {
     token,
     allowEdit
   });
-  const { fetchConfig } = useFlyoConfig();
-  console.log("nuxt plugin fetch config");
-  const config = await fetchConfig();
-  console.log("nuxt plugin after fetch config");
+  const flyoConfig = useFlyoConfig();
+  await flyoConfig.fetch();
   const router = useRouter();
   if (registerPageRoutes) {
-    config.pages.forEach((route) => {
+    flyoConfig.response.pages.forEach((route) => {
       router.addRoute(
         {
           name: `${route}`,

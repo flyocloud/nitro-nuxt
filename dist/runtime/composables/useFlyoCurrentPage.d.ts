@@ -1,4 +1,4 @@
 /**
  * Resolves the current page route
  */
-export declare const useFlyoCurrentPage: () => Promise<any>;
+export declare const useFlyoCurrentPage: () => Object;
