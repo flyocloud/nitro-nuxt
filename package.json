@@ -28,7 +28,7 @@
   },
   "dependencies": {
     "@flyodev/nitrocms-js": "^1.0",
-    "@flyodev/nitrocms-vue3": "^1.0.3",
+    "@flyodev/nitrocms-vue3": "./../nitrocms-vue3",
     "@nuxt/kit": "^3.2.0",
     "defu": "^6.1.2"
   }

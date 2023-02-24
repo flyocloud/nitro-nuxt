@@ -7,6 +7,7 @@ interface ModuleOptions {
      * @type string
      */
     token: string;
+    allowEdit: boolean;
     registerPageRoutes: boolean;
     defaultPageRoute: string;
 }

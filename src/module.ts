@@ -1,4 +1,4 @@
-import { defineNuxtModule, addPlugin, createResolver, extendViteConfig, addImportsDir, addComponentsDir, addComponent } from '@nuxt/kit'
+import { defineNuxtModule, addPlugin, createResolver, extendViteConfig, addImportsDir, addComponentsDir } from '@nuxt/kit'
 import { defu } from 'defu'
 
 export interface ModuleOptions {
@@ -9,24 +9,27 @@ export interface ModuleOptions {
    */
   token: string
 
+  allowEdit: boolean
+
   registerPageRoutes: boolean
 
   defaultPageRoute: string
 }
 
 export default defineNuxtModule<ModuleOptions>({
-
   meta: {
     name: '@flyodev/nitrocms-nuxt3',
     configKey: 'flyo',
   },
+
   defaults: {
     token: process.env.FLYO_TOKEN || '',
     registerPageRoutes: true,
-    defaultPageRoute: 'cms'
+    defaultPageRoute: 'cms',
+    allowEdit: process.env.NODE_ENV !== 'production',
   },
 
-  async setup (options, nuxt) {
+  setup (options, nuxt) {
 
     // Make sure url is set
     if (!options.token) {
@@ -52,24 +55,13 @@ export default defineNuxtModule<ModuleOptions>({
     })
 
     // Enable dirs
-    addComponentsDir({ path: "~/flyo", global: true, pathPrefix: false });
-
-    addComponent({
-      name: 'FlyoPage', // name of the component to be used in vue templates,
-      export: 'Page',
-      filePath: '@flyodev/nitrocms-vue3' // resolve(runtimeDir, 'components', 'MyComponent.vue')
-    })
-
-    addComponent({
-      name: 'FlyoBlock', // name of the component to be used in vue templates
-      export: 'Block',
-      filePath: '@flyodev/nitrocms-vue3' // resolve(runtimeDir, 'components', 'MyComponent.vue')
-    })
+    addComponentsDir({ path: "~/flyo", global: true, pathPrefix: false })
 
     nuxt.options.runtimeConfig.public.flyo = defu(nuxt.options.runtimeConfig.flyo, {
       token: options.token,
       registerPageRoutes: options.registerPageRoutes,
-      defaultPageRoute: options.defaultPageRoute
+      defaultPageRoute: options.defaultPageRoute,
+      allowEdit: options.allowEdit
     })
   }
 })

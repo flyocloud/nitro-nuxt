@@ -1,33 +1,22 @@
 //import { ApiClient, ConfigApi, PagesApi, EntitiesApi, SitemapApi, ContentApi } from '@flyodev/nitrocms-js'
 import { defineNuxtPlugin, useRuntimeConfig } from 'nuxt/app'
-import { ApiClient } from '@flyodev/nitrocms-js'
-import { Block, Page } from '@flyodev/nitrocms-vue3'
-import { useFlyoConfig } from './composables/useFlyoConfig'
+import FlyoVue, { useFlyoConfig } from '@flyodev/nitrocms-vue3'
 import { useRouter } from '#imports'
 
-export default defineNuxtPlugin(async (nuxtApp) => {
+export default defineNuxtPlugin(async ({ vueApp }) => {
+  const { token, allowEdit, registerPageRoutes } = useRuntimeConfig().flyo
 
-  nuxtApp.vueApp.component('FlyoPage', Page)
-  nuxtApp.vueApp.component('FlyoBlock', Block)
+  vueApp.use(FlyoVue, {
+    token,
+    allowEdit
+  });
 
-  const { token, defaultPageRoute, registerPageRoutes} = useRuntimeConfig().flyo
+  const flyoConfig = useFlyoConfig()
+  await flyoConfig.fetch()
 
-  const defaultClient = ApiClient.instance
-  defaultClient.defaultHeaders = {}
-
-  // for development purposes change the base path to the api. must end with `.../nitro`
-  // defaultClient.basePath = 'http://flyoapi-web-api.dev.heartbeat.gmbh:7171/nitro'
-
-  const ApiKeyAuth = defaultClient.authentications["ApiKeyAuth"]
-  ApiKeyAuth.apiKey = token
-  
-  const { fetchConfig } = useFlyoConfig()
-
-  const config = await fetchConfig()
-
+  const router = useRouter()
   if (registerPageRoutes) {
-    const router = useRouter()
-    config.pages.forEach((route: object) => {
+    flyoConfig.response.pages.forEach((route: object) => {
       router.addRoute(
         {
           name: `${route}`,

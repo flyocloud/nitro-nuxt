@@ -1,6 +1,10 @@
-import { useFlyoPage } from "./useFlyoPage.mjs";
-import { useRoute } from "#imports";
-export const useFlyoCurrentPage = async () => {
+import { useRoute, inject } from "#imports";
+export const useFlyoCurrentPage = () => {
+  const { page } = inject("flyo");
+  const { fetch } = page;
   const route = useRoute();
-  return await useFlyoPage(route.path);
+  fetch(route.path);
+  return {
+    ...page
+  };
 };

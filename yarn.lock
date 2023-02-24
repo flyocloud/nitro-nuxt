@@ -528,19 +528,11 @@
     "@babel/cli" "^7.0.0"
     superagent "^5.3.0"
 
-"@flyodev/nitrocms-vue3@^1.0.0":
-  version "1.0.2"
-  resolved "https://registry.yarnpkg.com/@flyodev/nitrocms-vue3/-/nitrocms-vue3-1.0.2.tgz#98d18aee6dcfe0182a5fed9645437945a5d689d4"
-  integrity sha512-yhaif8q0+ci4m1yMdK2bS18FLutMRk9FiCeODNKtJp9BAUiOOtIvAGTdm9aPycYDjXER1UPma9JkVCMkwkbhOQ==
-  dependencies:
-    "@flyodev/nitrocms-vue3" "^1.0.0"
-
-"@flyodev/nitrocms-vue3@^1.0.3":
+"@flyodev/nitrocms-vue3@./../nitrocms-vue3":
   version "1.0.3"
-  resolved "https://registry.yarnpkg.com/@flyodev/nitrocms-vue3/-/nitrocms-vue3-1.0.3.tgz#baeeb6d286d81989cecd394ea65f4c2559665e24"
-  integrity sha512-b7OmIX5ml1/53IG+ThwpSzVmnTOpWXF1tkvDCNFJuLf46ZqRreJNhPaYORlT8TSQm30fnaB6gGjmNzPAN6VMfA==
   dependencies:
-    "@flyodev/nitrocms-vue3" "^1.0.0"
+    "@flyodev/nitrocms-js" "^1.0"
+    pinia "^2.0.32"
 
 "@ioredis/commands@^1.1.1":
   version "1.2.0"
@@ -1017,7 +1009,7 @@
     "@vue/compiler-dom" "3.2.47"
     "@vue/shared" "3.2.47"
 
-"@vue/devtools-api@^6.4.5":
+"@vue/devtools-api@^6.4.5", "@vue/devtools-api@^6.5.0":
   version "6.5.0"
   resolved "https://registry.yarnpkg.com/@vue/devtools-api/-/devtools-api-6.5.0.tgz#98b99425edee70b4c992692628fa1ea2c1e57d07"
   integrity sha512-o9KfBeaBmCKl10usN4crU53fYtC1r7jJwdGKjPT24t348rHxgfpZ0xL3Xm/gLUYnc0oTp8LAmrxOeLyu6tbk2Q==
@@ -3369,6 +3361,14 @@ pify@^4.0.1:
   resolved "https://registry.yarnpkg.com/pify/-/pify-4.0.1.tgz#4b2cd25c50d598735c50292224fd8c6df41e3231"
   integrity sha512-uB80kBFb/tfd68bVleG9T5GGsGPjJrLAUpR5PZIrhBnIaRTQRjqdJSsIKkOP6OAIFbj7GOrcudc5pNjZ+geV2g==
 
+pinia@^2.0.32:
+  version "2.0.32"
+  resolved "https://registry.yarnpkg.com/pinia/-/pinia-2.0.32.tgz#93a12df4416566c1bb49225a078fe20b982350be"
+  integrity sha512-8Tw4OrpCSJ028UUyp0gYPP/wyjigLoEceuO/x1G+FlHVf73337e5vLm4uDmrRIoBG1hvaed/eSHnrCFjOc4nkA==
+  dependencies:
+    "@vue/devtools-api" "^6.5.0"
+    vue-demi "*"
+
 pkg-types@^1.0.1, pkg-types@^1.0.2:
   version "1.0.2"
   resolved "https://registry.yarnpkg.com/pkg-types/-/pkg-types-1.0.2.tgz#c233efc5210a781e160e0cafd60c0d0510a4b12e"
@@ -4476,6 +4476,11 @@ vue-bundle-renderer@^1.0.1:
   integrity sha512-jfFfTlXV7Xp2LxqcdRnBslFLb4C/DBvecTgpUYcDpMd75u326svTmEqa8YX5d1t7Mh9jODKdt8y+/z+8Pegh3g==
   dependencies:
     ufo "^1.1.0"
+
+vue-demi@*:
+  version "0.13.11"
+  resolved "https://registry.yarnpkg.com/vue-demi/-/vue-demi-0.13.11.tgz#7d90369bdae8974d87b1973564ad390182410d99"
+  integrity sha512-IR8HoEEGM65YY3ZJYAjMlKygDQn25D5ajNFNoKh9RSDMQtlzCxtfQjdQgv9jjK+m3377SsJXY8ysq8kLCZL25A==
 
 vue-devtools-stub@^0.1.0:
   version "0.1.0"
