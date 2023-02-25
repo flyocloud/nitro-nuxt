@@ -1,6 +1,6 @@
 //import { ApiClient, ConfigApi, PagesApi, EntitiesApi, SitemapApi, ContentApi } from '@flyodev/nitrocms-js'
 import { defineNuxtPlugin, useRuntimeConfig } from 'nuxt/app'
-import FlyoVue, { useFlyoConfig } from '@flyodev/nitrocms-vue3'
+import FlyoVue, { useFlyoConfigStore } from '@flyodev/nitrocms-vue3'
 import { useRouter } from '#imports'
 
 export default defineNuxtPlugin(async ({ vueApp }) => {
@@ -11,12 +11,12 @@ export default defineNuxtPlugin(async ({ vueApp }) => {
     allowEdit
   });
 
-  const flyoConfig = useFlyoConfig()
-  await flyoConfig.fetch()
+  const flyoConfigStore = useFlyoConfigStore()
+  await flyoConfigStore.fetch()
 
   const router = useRouter()
   if (registerPageRoutes) {
-    flyoConfig.response.pages.forEach((route: object) => {
+    flyoConfigStore.response.pages.forEach((route: object) => {
       router.addRoute(
         {
           name: `${route}`,
