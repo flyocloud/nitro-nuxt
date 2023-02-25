@@ -50,7 +50,7 @@ export default defineNuxtModule<ModuleOptions>({
 
     extendViteConfig((config) => {
       config.optimizeDeps?.include?.push(
-        ...['@flyodev/nitrocms-js']
+        ...['@flyodev/nitrocms-js', 'pinia']
       )
     })
 
