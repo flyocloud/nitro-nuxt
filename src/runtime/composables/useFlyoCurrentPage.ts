@@ -1,5 +1,5 @@
 import { useRoute } from '#imports'
-import { useFlyoPage } from '@flyodev/nitrocms-vue3'
+import { useFlyoPage } from './useFlyoPage'
 
 /**
  * Resolves the current page route
@@ -7,12 +7,7 @@ import { useFlyoPage } from '@flyodev/nitrocms-vue3'
 export const useFlyoCurrentPage = async ():Promise<any> => {
   const route = useRoute()
 
-  const page = useFlyoPage(route.path)
-  await page.fetch()
-
-  if (page.error.value) {
-    throw page.error.value
-  }
+  const page = await useFlyoPage(route.path)
 
   return {
     response: page.response,

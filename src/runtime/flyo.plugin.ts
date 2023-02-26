@@ -16,7 +16,7 @@ export default defineNuxtPlugin(async ({ vueApp }) => {
 
   const router = useRouter()
   if (registerPageRoutes) {
-    flyoConfigStore.response.pages.forEach((route: object) => {
+    flyoConfigStore.response.value.pages.forEach((route: object) => {
       router.addRoute(
         {
           name: `${route}`,
