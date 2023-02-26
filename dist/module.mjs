@@ -23,7 +23,7 @@ const module = defineNuxtModule({
     addImportsDir(resolve(runtimeDir, "composables"));
     extendViteConfig((config) => {
       config.optimizeDeps?.include?.push(
-        ...["@flyodev/nitrocms-js", "pinia"]
+        ...["@flyodev/nitrocms-js"]
       );
     });
     addComponentsDir({ path: "~/flyo", global: true, pathPrefix: false });
