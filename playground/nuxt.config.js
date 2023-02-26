@@ -1,7 +1,7 @@
 export default defineNuxtConfig({
     modules: [
       [
-        "@flyodev/nitrocms-nuxt3",
+        "@flyodev/nitrocms-nuxt",
         {
           token: "123"
         }

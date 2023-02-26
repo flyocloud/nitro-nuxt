@@ -1,5 +1,5 @@
 {
-  "name": "@flyodev/nitrocms-nuxt3",
+  "name": "@flyodev/nitrocms-nuxt",
   "configKey": "flyo",
-  "version": "1.0.15"
+  "version": "1.0.0"
 }

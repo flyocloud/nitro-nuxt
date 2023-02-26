@@ -3,7 +3,7 @@ import { defu } from 'defu';
 
 const module = defineNuxtModule({
   meta: {
-    name: "@flyodev/nitrocms-nuxt3",
+    name: "@flyodev/nitrocms-nuxt",
     configKey: "flyo"
   },
   defaults: {

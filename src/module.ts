@@ -18,7 +18,7 @@ export interface ModuleOptions {
 
 export default defineNuxtModule<ModuleOptions>({
   meta: {
-    name: '@flyodev/nitrocms-nuxt3',
+    name: '@flyodev/nitrocms-nuxt',
     configKey: 'flyo',
   },
 
