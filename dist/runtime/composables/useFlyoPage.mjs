@@ -3,7 +3,7 @@ import { useFlyoPage as useFlyoPageVue } from "@flyodev/nitrocms-vue3";
 export const useFlyoPage = async (slug) => {
   const page = useFlyoPageVue(slug);
   await page.fetch();
-  if (page?.error?.value) {
+  if (page.error.value) {
     throw page.error.value;
   }
   useSeoMeta({

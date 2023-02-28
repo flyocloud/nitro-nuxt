@@ -8,7 +8,7 @@ export const useFlyoPage = async (slug: string):Promise<any> => {
   const page = useFlyoPageVue(slug)
   await page.fetch()
 
-  if (page?.error?.value) {
+  if (page.error.value) {
     throw page.error.value
   }
 
