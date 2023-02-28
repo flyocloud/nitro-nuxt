@@ -1,4 +1,4 @@
-import { useServerSeoMeta } from '#imports'
+import { useSeoMeta } from '#imports'
 import { useFlyoPage as useFlyoPageVue } from '@flyodev/nitrocms-vue3'
 
 /**
@@ -12,13 +12,13 @@ export const useFlyoPage = async (slug: string):Promise<any> => {
     throw page.error.value
   }
 
-  useServerSeoMeta({
-    title: page.response.value.meta_json.title,
-    ogTitle: page.response.value.meta_json.title,
-    description: page.response.value.meta_json.description,
-    ogDescription: page.response.value.meta_json.description,
-    ogImage: page.response.value.meta_json.image,
-    twitterCard: page.response.value.meta_json.image
+  useSeoMeta({
+    title: () => page.response.value.meta_json.title,
+    ogTitle: () => page.response.value.meta_json.title,
+    description: () => page.response.value.meta_json.description,
+    ogDescription: () => page.response.value.meta_json.description,
+    ogImage: () => page.response.value.meta_json.image,
+    twitterCard: () => page.response.value.meta_json.image
   })
 
   return {
