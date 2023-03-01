@@ -1,16 +1,19 @@
+import { useAsyncData } from '#imports'
 import { useFlyoConfig as useFlyoConfigVue } from '@flyodev/nitrocms-vue3'
 
 /**
  * Resolves the current page route
  */
 export const useFlyoConfig = async ():Promise<any> => {
-  const config = useFlyoConfigVue()
+  const { fetch } = useFlyoConfigVue()
+  const { data, error, refresh } = await useAsyncData('flyoConfig', fetch)
 
-  if (config?.error?.value) {
-    throw config?.error?.value
+	if (data?.value?.error || error?.value) {
+    throw data?.value?.error || error?.value
   }
 
   return {
-    response: config.response
+    response: data.value.response,
+		refresh
   }
 }

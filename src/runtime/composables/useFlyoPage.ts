@@ -1,29 +1,30 @@
-import { useSeoMeta } from '#imports'
+import { useAsyncData, useSeoMeta } from '#imports'
 import { useFlyoPage as useFlyoPageVue } from '@flyodev/nitrocms-vue3'
 
 /**
  * Resolves the current page route
  */
 export const useFlyoPage = async (slug: string):Promise<any> => {
-  const page = useFlyoPageVue(slug)
-  await page.fetch()
+  const { fetch, isEditable, putContent } = useFlyoPageVue(slug)
+  const { data, error, refresh } = await useAsyncData(slug, fetch)
 
-  if (page.error.value) {
-    throw page.error.value
+  if (data?.value?.error || error?.value) {
+    throw data?.value?.error || error?.value
   }
 
   useSeoMeta({
-    title: () => page.response.value.meta_json.title,
-    ogTitle: () => page.response.value.meta_json.title,
-    description: () => page.response.value.meta_json.description,
-    ogDescription: () => page.response.value.meta_json.description,
-    ogImage: () => page.response.value.meta_json.image,
-    twitterCard: () => page.response.value.meta_json.image
+    title: () => data.value.response.meta_json.title,
+    ogTitle: () => data.value.response.meta_json.title,
+    description: () => data.value.response.meta_json.description,
+    ogDescription: () => data.value.response.meta_json.description,
+    ogImage: () => data.value.response.meta_json.image,
+    twitterCard: () => data.value.response.meta_json.image
   })
 
   return {
-    response: page.response,
-    isEditable: page.isEditable,
-    putContent: page.putContent
+    response: data.value.response,
+    isEditable,
+    putContent,
+		refresh
   }
 }

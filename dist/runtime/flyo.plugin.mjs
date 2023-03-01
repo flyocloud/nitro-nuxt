@@ -1,17 +1,16 @@
-import { defineNuxtPlugin, useRuntimeConfig } from "nuxt/app";
-import FlyoVue, { useFlyoConfig } from "@flyodev/nitrocms-vue3";
-import { useRouter } from "#imports";
+import { useRouter, defineNuxtPlugin, useRuntimeConfig } from "#imports";
+import { useFlyoConfig } from "./composables/useFlyoConfig.mjs";
+import FlyoVue from "@flyodev/nitrocms-vue3";
 export default defineNuxtPlugin(async ({ vueApp }) => {
   const { token, allowEdit, registerPageRoutes } = useRuntimeConfig().flyo;
   vueApp.use(FlyoVue, {
     token,
     allowEdit
   });
-  const flyoConfig = useFlyoConfig();
-  await flyoConfig.fetch();
+  const { response: config } = await useFlyoConfig();
   const router = useRouter();
   if (registerPageRoutes) {
-    flyoConfig.response.value.pages.forEach((route) => {
+    config.pages.forEach((route) => {
       router.addRoute(
         {
           name: `${route}`,
