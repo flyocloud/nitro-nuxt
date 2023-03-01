@@ -529,10 +529,10 @@
     "@babel/cli" "^7.0.0"
     superagent "^5.3.0"
 
-"@flyodev/nitrocms-vue3@^1.0.7":
-  version "1.0.7"
-  resolved "https://registry.yarnpkg.com/@flyodev/nitrocms-vue3/-/nitrocms-vue3-1.0.7.tgz#8a57fb6d8ce1e4767f50f740efbf3357129d55ae"
-  integrity sha512-riS1jWbVc+NoNyo2GtyIFeUeDBYU7tvKArDuSX4HSYMGIIQW3/VPzwMhnpenjivJh4Nk4+OSVK1BFTacgS0XxA==
+"@flyodev/nitrocms-vue3@^1.0.8":
+  version "1.0.8"
+  resolved "https://registry.yarnpkg.com/@flyodev/nitrocms-vue3/-/nitrocms-vue3-1.0.8.tgz#e3090b121e1a790e2c476293c3fcdaa0ad20db36"
+  integrity sha512-ZQNMPzOtCHIQiYXCB33RzVp57Lps6ZKg7YghHxEz7z0x+EOT6n1yGu7YtatZOpkFbP1T1MdyOLkRByCcsqQgjQ==
   dependencies:
     "@flyodev/nitrocms-js" "^1.0"
 
