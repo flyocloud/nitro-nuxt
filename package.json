@@ -1,6 +1,6 @@
 {
   "name": "@flyodev/nitrocms-nuxt",
-  "version": "1.0.6",
+  "version": "1.0.7",
   "description": "Nuxt Plugin for Nitro CMS",
   "repository": "git@github.com:flyocloud/nitrocms-nuxt.git",
   "author": "Basil Suter <git@nadar.io>",
@@ -27,7 +27,7 @@
     "nuxt": "^3.2.0"
   },
   "dependencies": {
-    "@flyodev/nitrocms-vue3": "^1.0.10",
+    "@flyodev/nitrocms-vue3": "^1.0.11",
     "@nuxt/kit": "^3.2.0",
     "defu": "^6.1.2"
   }
