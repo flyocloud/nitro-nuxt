@@ -6,7 +6,8 @@ interface ModuleOptions {
      * @default process.env.FLYO_TOKEN
      * @type string
      */
-    token: string;
+    apiToken: string;
+    apiBasePath: string;
     allowEdit: boolean;
     liveEditOrigin: string;
     registerPageRoutes: boolean;

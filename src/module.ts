@@ -7,7 +7,9 @@ export interface ModuleOptions {
    * @default process.env.FLYO_TOKEN
    * @type string
    */
-  token: string
+  apiToken: string
+
+  apiBasePath: string
 
   allowEdit: boolean
 
@@ -25,18 +27,19 @@ export default defineNuxtModule<ModuleOptions>({
   },
 
   defaults: {
-    token: process.env.FLYO_TOKEN || '',
+    apiToken: process.env.FLYO_API_TOKEN || '',
+    apiBasePath: process.env.FLYO_API_BASE_PATH || '',
     registerPageRoutes: true,
     defaultPageRoute: 'cms',
     allowEdit: process.env.NODE_ENV !== 'production',
-    liveEditOrigin: process.env.FLYO_LIVE_EDIT_ORIGIN || 'https://flyo.cloud'
+    liveEditOrigin: process.env.FLYO_LIVE_EDIT_ORIGIN || 'https://flyo.cloud',
   },
 
   setup (options, nuxt) {
 
     // Make sure url is set
-    if (!options.token) {
-      throw new Error('Missing `FLYO_TOKEN` in `.env`')
+    if (!options.apiToken) {
+      throw new Error('Missing `FLYO_API_TOKEN` in `.env`')
     }
 
     const { resolve } = createResolver(import.meta.url)
@@ -61,7 +64,8 @@ export default defineNuxtModule<ModuleOptions>({
     addComponentsDir({ path: "~/flyo", global: true, pathPrefix: false })
 
     nuxt.options.runtimeConfig.public.flyo = defu(nuxt.options.runtimeConfig.flyo, {
-      token: options.token,
+      apiToken: options.apiToken,
+      apiBasePath: options.apiBasePath,
       registerPageRoutes: options.registerPageRoutes,
       defaultPageRoute: options.defaultPageRoute,
       allowEdit: options.allowEdit,
