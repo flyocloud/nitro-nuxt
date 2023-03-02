@@ -10,7 +10,8 @@ const module = defineNuxtModule({
     token: process.env.FLYO_TOKEN || "",
     registerPageRoutes: true,
     defaultPageRoute: "cms",
-    allowEdit: process.env.NODE_ENV !== "production"
+    allowEdit: process.env.NODE_ENV !== "production",
+    liveEditOrigin: "https://flyo.cloud"
   },
   setup(options, nuxt) {
     if (!options.token) {
@@ -31,7 +32,8 @@ const module = defineNuxtModule({
       token: options.token,
       registerPageRoutes: options.registerPageRoutes,
       defaultPageRoute: options.defaultPageRoute,
-      allowEdit: options.allowEdit
+      allowEdit: options.allowEdit,
+      liveEditOrigin: options.liveEditOrigin
     });
   }
 });

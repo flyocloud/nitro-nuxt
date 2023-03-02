@@ -8,6 +8,7 @@ interface ModuleOptions {
      */
     token: string;
     allowEdit: boolean;
+    liveEditOrigin: string;
     registerPageRoutes: boolean;
     defaultPageRoute: string;
 }

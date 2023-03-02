@@ -3,11 +3,12 @@ import { useFlyoConfig } from './composables/useFlyoConfig'
 import FlyoVue from '@flyodev/nitrocms-vue3'
 
 export default defineNuxtPlugin(async ({ vueApp }) => {
-  const { token, allowEdit, registerPageRoutes } = useRuntimeConfig().flyo
+  const { token, allowEdit, liveEditOrigin, registerPageRoutes } = useRuntimeConfig().flyo
 
   vueApp.use(FlyoVue, {
     token,
-    allowEdit
+    allowEdit,
+    liveEditOrigin
   });
 
   const { response: config } = await useFlyoConfig()
