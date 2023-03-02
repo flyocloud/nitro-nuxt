@@ -29,7 +29,7 @@ export default defineNuxtModule<ModuleOptions>({
     registerPageRoutes: true,
     defaultPageRoute: 'cms',
     allowEdit: process.env.NODE_ENV !== 'production',
-    liveEditOrigin: 'https://flyo.cloud'
+    liveEditOrigin: process.env.FLYO_LIVE_EDIT_ORIGIN || 'https://flyo.cloud'
   },
 
   setup (options, nuxt) {
