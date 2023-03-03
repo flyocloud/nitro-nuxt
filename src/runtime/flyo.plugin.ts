@@ -10,7 +10,7 @@ export default defineNuxtPlugin(async ({ vueApp }) => {
     apiBasePath,
     allowEdit,
     liveEditOrigin
-  });
+  })
 
   const { response: config } = await useFlyoConfig()
 
