@@ -8,7 +8,7 @@ interface ModuleOptions {
      */
     apiToken: string;
     apiBasePath: string;
-    allowEdit: boolean;
+    liveEdit: boolean;
     liveEditOrigin: string;
     registerPageRoutes: boolean;
     defaultPageRoute: string;

@@ -2,11 +2,12 @@ import { useRouter, defineNuxtPlugin, useRuntimeConfig } from "#imports";
 import { useFlyoConfig } from "./composables/useFlyoConfig.mjs";
 import FlyoVue from "@flyodev/nitrocms-vue3";
 export default defineNuxtPlugin(async ({ vueApp }) => {
-  const { apiToken, apiBasePath, allowEdit, liveEditOrigin, registerPageRoutes } = useRuntimeConfig().flyo;
+  const { apiToken, apiBasePath, liveEdit, liveEditOrigin, registerPageRoutes } = useRuntimeConfig().flyo;
   vueApp.use(FlyoVue, {
     apiToken,
     apiBasePath,
-    allowEdit,
+    liveEdit,
+    // renamed from allowEdit to liveEdit, but not yet in vue3 plugin
     liveEditOrigin
   });
   const { response: config } = await useFlyoConfig();

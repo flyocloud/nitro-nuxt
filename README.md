@@ -21,6 +21,7 @@ All available env variables
 + FLYO_API_TOKEN
 + FLYO_API_BASE_PATH
 + FLYO_LIVE_EDIT_ORIGIN
++ FLYO_LIVE_EDIT (whether its enabled or not, by default its enabled if not node_env production)
 
 ## More
 

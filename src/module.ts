@@ -11,7 +11,7 @@ export interface ModuleOptions {
 
   apiBasePath: string
 
-  allowEdit: boolean
+  liveEdit: boolean
 
   liveEditOrigin: string
 
@@ -31,7 +31,7 @@ export default defineNuxtModule<ModuleOptions>({
     apiBasePath: process.env.FLYO_API_BASE_PATH || '',
     registerPageRoutes: true,
     defaultPageRoute: 'cms',
-    allowEdit: process.env.NODE_ENV !== 'production',
+    liveEdit: process.env.FLYO_LIVE_EDIT || process.env.NODE_ENV !== 'production',
     liveEditOrigin: process.env.FLYO_LIVE_EDIT_ORIGIN || 'https://flyo.cloud',
   },
 
@@ -68,7 +68,7 @@ export default defineNuxtModule<ModuleOptions>({
       apiBasePath: options.apiBasePath,
       registerPageRoutes: options.registerPageRoutes,
       defaultPageRoute: options.defaultPageRoute,
-      allowEdit: options.allowEdit,
+      liveEdit: options.liveEdit,
       liveEditOrigin: options.liveEditOrigin
     })
   }

@@ -11,7 +11,7 @@ const module = defineNuxtModule({
     apiBasePath: process.env.FLYO_API_BASE_PATH || "",
     registerPageRoutes: true,
     defaultPageRoute: "cms",
-    allowEdit: process.env.NODE_ENV !== "production",
+    liveEdit: process.env.FLYO_LIVE_EDIT || process.env.NODE_ENV !== "production",
     liveEditOrigin: process.env.FLYO_LIVE_EDIT_ORIGIN || "https://flyo.cloud"
   },
   setup(options, nuxt) {
@@ -34,7 +34,7 @@ const module = defineNuxtModule({
       apiBasePath: options.apiBasePath,
       registerPageRoutes: options.registerPageRoutes,
       defaultPageRoute: options.defaultPageRoute,
-      allowEdit: options.allowEdit,
+      liveEdit: options.liveEdit,
       liveEditOrigin: options.liveEditOrigin
     });
   }
