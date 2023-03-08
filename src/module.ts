@@ -71,6 +71,8 @@ export default defineNuxtModule<ModuleOptions>({
       liveEdit: options.liveEdit,
       liveEditOrigin: options.liveEditOrigin
     })
+
+    console.log(nuxt.options.runtimeConfig.public.flyo)
   }
 })
 

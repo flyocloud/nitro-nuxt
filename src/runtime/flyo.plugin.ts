@@ -8,7 +8,7 @@ export default defineNuxtPlugin(async ({ vueApp }) => {
   vueApp.use(FlyoVue, {
     apiToken,
     apiBasePath,
-    liveEdit, // renamed from allowEdit to liveEdit, but not yet in vue3 plugin
+    liveEdit,
     liveEditOrigin
   })
 
