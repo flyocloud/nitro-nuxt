@@ -63,7 +63,7 @@ export default defineNuxtModule<ModuleOptions>({
     // Enable dirs
     addComponentsDir({ path: "~/flyo", global: true, pathPrefix: false })
 
-    nuxt.options.runtimeConfig.public.flyo = defu(nuxt.options.runtimeConfig.flyo, {
+    const flyoConfig = defu(nuxt.options.runtimeConfig.flyo, {
       apiToken: options.apiToken,
       apiBasePath: options.apiBasePath,
       registerPageRoutes: options.registerPageRoutes,
@@ -72,7 +72,12 @@ export default defineNuxtModule<ModuleOptions>({
       liveEditOrigin: options.liveEditOrigin
     })
 
-    console.log(nuxt.options.runtimeConfig.public.flyo)
+    // ensure the liveEdit value is boolean
+    if (typeof flyoConfig.liveEdit !== 'boolean') {
+      flyoConfig.liveEdit = flyoConfig.liveEdit === 'true'
+    }
+
+    nuxt.options.runtimeConfig.public.flyo = flyoConfig
   }
 })
 
