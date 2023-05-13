@@ -1,4 +1,4 @@
-import { useAsyncData } from '#imports'
+import { useAsyncData, ref } from '#imports'
 import { useFlyoConfig as useFlyoConfigVue } from '@flyodev/nitrocms-vue3'
 
 /**
@@ -13,7 +13,7 @@ export const useFlyoConfig = async ():Promise<any> => {
   }
 
   return {
-    response: data.value.response,
+    response: ref(data.value.response),
 		refresh
   }
 }
