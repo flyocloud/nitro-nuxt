@@ -11,7 +11,5 @@ export const useFlyoCurrentPage = async ():Promise<any> => {
 
   return {
     response: page.response,
-    isEditable: page.isEditable,
-    putContent: page.putContent
   }
 }
