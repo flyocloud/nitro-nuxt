@@ -1,4 +1,4 @@
-import { useRouter, defineNuxtPlugin, useAsyncData, useRuntimeConfig } from '#imports'
+import { useRouter, defineNuxtPlugin, useRuntimeConfig } from '#imports'
 import { useFlyoConfig } from './composables/useFlyoConfig'
 import FlyoVue from '@flyodev/nitrocms-vue3'
 
