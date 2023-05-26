@@ -1,6 +1,6 @@
-# Flyo Nitro CMS Nuxt
+# Flyo Nitro Nuxt Module
 
-A Nuxt 3 Plugin for Nitro CMS
+A Nuxt 3 Plugin for Flyo Nitro
 
 ```node
 yarn add @flyodev/nitrocms-nuxt
