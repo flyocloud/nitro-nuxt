@@ -22,7 +22,7 @@ export interface ModuleOptions {
 
 export default defineNuxtModule<ModuleOptions>({
   meta: {
-    name: '@flyodev/nitrocms-nuxt',
+    name: '@flyo/nitro-nuxt',
     configKey: 'flyo',
   },
 
@@ -56,7 +56,7 @@ export default defineNuxtModule<ModuleOptions>({
 
     extendViteConfig((config) => {
       config.optimizeDeps?.include?.push(
-        ...['@flyodev/nitrocms-js']
+        ...['@flyo/nitro-js']
       )
     })
 

@@ -10,6 +10,6 @@
     },
     "devDependencies": {
       "nuxt": "^3.0.0",
-      "@flyodev/nitrocms-nuxt": "^0.0.1"
+      "@flyo/nitro-nuxt": "^0.0.1"
     }
   }

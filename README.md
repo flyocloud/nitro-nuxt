@@ -3,16 +3,16 @@
 A Nuxt 3 Plugin for Flyo Nitro
 
 ```node
-yarn add @flyodev/nitrocms-nuxt
+yarn add @flyo/nitro-nuxt
 ```
 
 nuxt.config.js
 
 ```js
-modules: ['@flyodev/nitrocms-nuxt'],
+modules: ['@flyo/nitro-nuxt'],
 ```
 
-add `.env` file with `FLYO_API_TOKEN=XYZ` or add property `apiToken` to module config `modules: ['@flyodev/nitrocms-nuxt', {apiToken: 'XYZ'}]`,
+add `.env` file with `FLYO_API_TOKEN=XYZ` or add property `apiToken` to module config `modules: ['@flyodev/nitro-nuxt', {apiToken: 'XYZ'}]`,
 
 ## Environment Variables
 
@@ -25,4 +25,4 @@ All available env variables
 
 ## More
 
-[Read more on dev.flyo.cloud/nitrocms/nuxt](https://dev.flyo.cloud/nitrocms/nuxt)
+[Read more on dev.flyo.cloud/nitro/nuxt](https://dev.flyo.cloud/nitro/nuxt)

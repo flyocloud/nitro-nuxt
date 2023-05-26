@@ -414,17 +414,17 @@
   integrity sha512-lAhycmKnVOuRYNtRtatQR1LPQf2oYCkRGkSFnseDAKPl8lu5SOsK/e1sXe5a0Pc5kHIHe6P2I/ilntNv2xf3cA==
 
 "@flyo/nitro-js@^1.0":
-  version "1.0.0"
-  resolved "https://registry.yarnpkg.com/@flyo/nitro-js/-/nitro-js-1.0.0.tgz#c5c439f76e495b29db55a1d667ca6744786543cb"
-  integrity sha512-J4kKTndNnfDMdLHQCzuZPOtWe4jFvY3KtHNAwgT7rZN3IaigkuhMYwS5fK8ju/ulf4WnU3salMYLLLzWx4eD7Q==
+  version "1.0.1"
+  resolved "https://registry.yarnpkg.com/@flyo/nitro-js/-/nitro-js-1.0.1.tgz#7667835d6ade82b43175115ab579410a0f9a4850"
+  integrity sha512-J9xibXFVzvW51r1gKX4dVixZwBbUto2ZfSdL+5m/Qxpd0xagq1CM/XU58YEvUm+Ad+IGrn3YcxcwdsWFLpFkAA==
   dependencies:
     "@babel/cli" "^7.0.0"
     superagent "^5.3.0"
 
 "@flyo/nitro-vue3@^1.0":
-  version "1.0.0"
-  resolved "https://registry.yarnpkg.com/@flyo/nitro-vue3/-/nitro-vue3-1.0.0.tgz#922fd68c58bbac2202f132fc30fb7b4ab388f921"
-  integrity sha512-2JF0J9Ibs79/+xzImeEvS9TsT0lcDTtqJZllO+o55IRZAXr3Yv5jE18TTGF/L13eLlmuEs2O+RJbssJbpKN2iw==
+  version "1.0.1"
+  resolved "https://registry.yarnpkg.com/@flyo/nitro-vue3/-/nitro-vue3-1.0.1.tgz#b0c9c5a809e44c25f56ef5981507cad2c2aa610f"
+  integrity sha512-CJRAEi5ZpXdv94U7PT+YZaNA5muyW52HCVN9cWJ4VfLVSz4rqVR5T++vi5ek2a/ydRgeshm9qe5OvY6+DeVXfg==
   dependencies:
     "@flyo/nitro-js" "^1.0"
 

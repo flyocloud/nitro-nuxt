@@ -3,7 +3,7 @@ import { defu } from 'defu';
 
 const module = defineNuxtModule({
   meta: {
-    name: "@flyodev/nitrocms-nuxt",
+    name: "@flyo/nitro-nuxt",
     configKey: "flyo"
   },
   defaults: {
@@ -25,7 +25,7 @@ const module = defineNuxtModule({
     addImportsDir(resolve(runtimeDir, "composables"));
     extendViteConfig((config) => {
       config.optimizeDeps?.include?.push(
-        ...["@flyodev/nitrocms-js"]
+        ...["@flyo/nitro-js"]
       );
     });
     addComponentsDir({ path: "~/flyo", global: true, pathPrefix: false });
