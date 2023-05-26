@@ -1,5 +1,5 @@
 import { useAsyncData } from '#imports'
-import { useFlyoConfig as useFlyoConfigVue } from '@flyodev/nitrocms-vue3'
+import { useFlyoConfig as useFlyoConfigVue } from '@flyo/nitro-vue3'
 
 /**
  * Resolves the current page route

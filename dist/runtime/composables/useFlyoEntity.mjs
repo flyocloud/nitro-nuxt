@@ -1,5 +1,5 @@
 import { onMounted, useAsyncData, useFetch } from "#imports";
-import { useFlyoEntity as useFlyoEntityVue } from "@flyodev/nitrocms-vue3";
+import { useFlyoEntity as useFlyoEntityVue } from "@flyo/nitro-vue3";
 export const useFlyoEntity = async (uniqueId) => {
   onMounted(() => {
     if (data.value.response?.entity?.entity_metric?.api) {

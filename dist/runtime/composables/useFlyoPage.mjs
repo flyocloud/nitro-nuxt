@@ -1,5 +1,5 @@
 import { useAsyncData, useSeoMeta, ref } from "#imports";
-import { useFlyoPage as useFlyoPageVue } from "@flyodev/nitrocms-vue3";
+import { useFlyoPage as useFlyoPageVue } from "@flyo/nitro-vue3";
 export const useFlyoPage = async (slug) => {
   const { fetch } = useFlyoPageVue(slug);
   const { data, error, refresh } = await useAsyncData(slug, fetch);

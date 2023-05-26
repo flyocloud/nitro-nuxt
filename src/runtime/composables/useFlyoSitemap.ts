@@ -1,4 +1,4 @@
-import { useFlyoSitemap as useFlyoSitemapVue } from '@flyodev/nitrocms-vue3'
+import { useFlyoSitemap as useFlyoSitemapVue } from '@flyo/nitro-vue3'
 
 export const useFlyoSitemap = async (uniqueId: string):Promise<any> => {
   const sitemap = useFlyoSitemapVue()

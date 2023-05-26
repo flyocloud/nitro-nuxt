@@ -1,5 +1,5 @@
 import { useAsyncData, useSeoMeta, ref } from '#imports'
-import { useFlyoPage as useFlyoPageVue } from '@flyodev/nitrocms-vue3'
+import { useFlyoPage as useFlyoPageVue } from '@flyo/nitro-vue3'
 
 /**
  * Resolves the current page route
