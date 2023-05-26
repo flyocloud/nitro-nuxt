@@ -1,6 +1,6 @@
 {
   "name": "@flyo/nitro-nuxt",
-  "version": "1.0.2",
+  "version": "1.0.3",
   "description": "Flyo Nitro Nuxt Module",
   "repository": "git@github.com:flyocloud/nitro-nuxt.git",
   "author": "Basil Suter <git@nadar.io>",
@@ -27,7 +27,7 @@
     "nuxt": "^3.2.0"
   },
   "dependencies": {
-    "@flyo/nitro-vue3": "^1.0",
+    "@flyo/nitro-vue3": "^1.0.1",
     "@nuxt/kit": "^3.2.0",
     "defu": "^6.1.2"
   }

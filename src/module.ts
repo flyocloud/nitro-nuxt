@@ -3,7 +3,7 @@ import { defu } from 'defu'
 
 export interface ModuleOptions {
   /**
-   * Flyo Nitro CMS Auth Token
+   * Flyo Nitro Auth Token
    * @default process.env.FLYO_TOKEN
    * @type string
    */

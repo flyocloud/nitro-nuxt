@@ -12,7 +12,7 @@ nuxt.config.js
 modules: ['@flyo/nitro-nuxt'],
 ```
 
-add `.env` file with `FLYO_API_TOKEN=XYZ` or add property `apiToken` to module config `modules: ['@flyodev/nitro-nuxt', {apiToken: 'XYZ'}]`,
+add `.env` file with `FLYO_API_TOKEN=XYZ` or add property `apiToken` to module config `modules: ['@flyo/nitro-nuxt', {apiToken: 'XYZ'}]`,
 
 ## Environment Variables
 

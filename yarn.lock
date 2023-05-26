@@ -421,7 +421,7 @@
     "@babel/cli" "^7.0.0"
     superagent "^5.3.0"
 
-"@flyo/nitro-vue3@^1.0":
+"@flyo/nitro-vue3@^1.0.1":
   version "1.0.1"
   resolved "https://registry.yarnpkg.com/@flyo/nitro-vue3/-/nitro-vue3-1.0.1.tgz#b0c9c5a809e44c25f56ef5981507cad2c2aa610f"
   integrity sha512-CJRAEi5ZpXdv94U7PT+YZaNA5muyW52HCVN9cWJ4VfLVSz4rqVR5T++vi5ek2a/ydRgeshm9qe5OvY6+DeVXfg==
