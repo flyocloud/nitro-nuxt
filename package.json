@@ -1,6 +1,6 @@
 {
   "name": "@flyo/nitro-nuxt",
-  "version": "1.0.4",
+  "version": "1.0.5",
   "description": "Flyo Nitro Nuxt Module",
   "repository": "git@github.com:flyocloud/nitro-nuxt.git",
   "author": "Basil Suter <git@nadar.io>",
