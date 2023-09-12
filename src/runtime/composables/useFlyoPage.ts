@@ -12,7 +12,8 @@ export const useFlyoPage = async (slug: string):Promise<any> => {
     throw data?.value?.error || error?.value
   }
 
-  useSeoMeta({
+  // https://github.com/nuxt/nuxt/issues/22712
+  await   ({
     title: () => data.value.response.meta_json.title,
     ogTitle: () => data.value.response.meta_json.title,
     description: () => data.value.response.meta_json.description,

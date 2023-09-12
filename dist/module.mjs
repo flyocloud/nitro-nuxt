@@ -29,7 +29,7 @@ const module = defineNuxtModule({
       );
     });
     addComponentsDir({ path: "~/flyo", global: true, pathPrefix: false });
-    const flyoConfig = defu(nuxt.options.runtimeConfig.flyo, {
+    const flyoConfig = defu(nuxt.options.runtimeConfig.public.flyo, {
       apiToken: options.apiToken,
       apiBasePath: options.apiBasePath,
       registerPageRoutes: options.registerPageRoutes,
