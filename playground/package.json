@@ -1,15 +1,16 @@
 
 
 {
-    "private": true,
-    "scripts": {
-      "demo": "nuxt dev",
-      "build": "nuxt build",
-      "generate": "nuxt generate",
-      "start": "nuxt preview"
-    },
-    "devDependencies": {
-      "nuxt": "^3.0.0",
-      "@flyo/nitro-nuxt": "^0.0.1"
-    }
+  "private": true,
+  "scripts": {
+    "dev": "nuxt dev",
+    "demo": "nuxt dev",
+    "build": "nuxt build",
+    "generate": "nuxt generate",
+    "start": "nuxt preview"
+  },
+  "devDependencies": {
+    "@flyo/nitro-nuxt": "file:..",
+    "nuxt": "^4.3.1"
   }
+}
