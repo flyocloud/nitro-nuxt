@@ -93,6 +93,7 @@ This module auto-imports these composables:
 - `useFlyoEntity(uniqueId)`
 - `useFlyoPage(slug)`
 - `useFlyoSitemap()`
+- `editable(block)` — returns `data-flyo-uid` attribute for live-edit support
 
 Example:
 
@@ -112,7 +113,28 @@ The module registers a global components directory at:
 
 - `~/flyo`
 
-If your app uses Flyo components, place them there.
+Place your Flyo block components there. Each component receives a `block` prop from the CMS.
+
+### Live-Edit Support for Blocks
+
+When `liveEdit` is enabled (the default in non-production environments), the module automatically activates live-editing features — page reload on content changes, scroll-to-block, and hover-highlight with click-to-edit. **No extra setup is needed in your layout or `App.vue`.**
+
+To make individual block components discoverable by the live editor, use the auto-imported `editable` helper to bind the block's `data-flyo-uid` attribute:
+
+```vue
+<script setup>
+defineProps({ block: Object })
+</script>
+
+<template>
+  <section v-bind="editable(block)" class="bg-gray-200 p-8 rounded-lg text-center">
+    <h2 class="text-3xl font-bold mb-4">{{ block?.content?.title }}</h2>
+    <p class="text-lg mb-6">{{ block?.content?.teaser }}</p>
+  </section>
+</template>
+```
+
+`editable(block)` returns `{ 'data-flyo-uid': block.uid }` when the block has a uid, or an empty object otherwise. This is safe to include unconditionally — it has no effect when live-edit is disabled.
 
 ## Local Development (This Repository)
 

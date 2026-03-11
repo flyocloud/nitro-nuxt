@@ -1,6 +1,6 @@
 import { useRouter, defineNuxtPlugin, useRuntimeConfig } from '#imports'
 import { useFlyoConfig } from './composables/useFlyoConfig'
-import FlyoVue from '@flyo/nitro-vue3'
+import FlyoVue, { useFlyoLiveEdit } from '@flyo/nitro-vue3'
 
 export default defineNuxtPlugin(async ({ vueApp }) => {
   const { apiToken, apiBasePath, liveEdit, liveEditOrigin, registerPageRoutes } = useRuntimeConfig().public.flyo
@@ -11,6 +11,10 @@ export default defineNuxtPlugin(async ({ vueApp }) => {
     liveEdit,
     liveEditOrigin
   })
+
+  if (liveEdit && typeof window !== 'undefined') {
+    useFlyoLiveEdit()
+  }
 
   const { response: config } = await useFlyoConfig()
 
