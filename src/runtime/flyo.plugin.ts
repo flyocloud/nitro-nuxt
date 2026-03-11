@@ -13,7 +13,19 @@ export default defineNuxtPlugin(async ({ vueApp }) => {
   })
 
   if (liveEdit && typeof window !== 'undefined') {
-    useFlyoLiveEdit()
+    let initialized = false
+
+    // Run the hook-based composable from an actual component setup context.
+    vueApp.mixin({
+      setup: () => {
+        if (initialized) {
+          return
+        }
+
+        initialized = true
+        useFlyoLiveEdit()
+      }
+    })
   }
 
   const { response: config } = await useFlyoConfig()

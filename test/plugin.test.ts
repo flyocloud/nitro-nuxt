@@ -41,46 +41,89 @@ function setRuntimeConfig(overrides: Record<string, unknown> = {}) {
 
 describe('flyo plugin – live edit', () => {
   beforeEach(() => {
-    useFlyoLiveEditMock.mockClear()
+    useFlyoLiveEditMock.mockReset()
     useFlyoConfigMock.mockResolvedValue({ response: { pages: [] } })
   })
 
-  it('calls useFlyoLiveEdit when liveEdit is true on the client', async () => {
+  it('registers a one-time setup mixin when liveEdit is true on the client', async () => {
     setRuntimeConfig({ liveEdit: true })
-    // window is defined in the default vitest (node) environment via jsdom-like globals;
-    // make sure it exists for a "client" scenario
     globalThis.window = globalThis.window || ({} as any)
 
     const { default: plugin } = await import('../src/runtime/flyo.plugin')
-    const vueApp = { use: vi.fn() }
+    const vueApp = { use: vi.fn(), mixin: vi.fn() }
     await plugin({ vueApp } as any)
+
+    expect(vueApp.mixin).toHaveBeenCalledTimes(1)
+    expect(useFlyoLiveEditMock).not.toHaveBeenCalled()
+  })
+
+  it('initializes live edit exactly once from component setup context', async () => {
+    setRuntimeConfig({ liveEdit: true })
+    globalThis.window = globalThis.window || ({} as any)
+
+    const { default: plugin } = await import('../src/runtime/flyo.plugin')
+    const vueApp = { use: vi.fn(), mixin: vi.fn() }
+    await plugin({ vueApp } as any)
+
+    const mixin = vueApp.mixin.mock.calls[0]?.[0]
+    expect(typeof mixin?.setup).toBe('function')
+
+    mixin.setup()
+    mixin.setup()
 
     expect(useFlyoLiveEditMock).toHaveBeenCalledOnce()
   })
 
-  it('does NOT call useFlyoLiveEdit when liveEdit is false', async () => {
+  it('does NOT register live edit mixin when liveEdit is false', async () => {
     setRuntimeConfig({ liveEdit: false })
 
     const { default: plugin } = await import('../src/runtime/flyo.plugin')
-    const vueApp = { use: vi.fn() }
+    const vueApp = { use: vi.fn(), mixin: vi.fn() }
     await plugin({ vueApp } as any)
 
+    expect(vueApp.mixin).not.toHaveBeenCalled()
     expect(useFlyoLiveEditMock).not.toHaveBeenCalled()
   })
 
-  it('does NOT call useFlyoLiveEdit on the server even if liveEdit is true', async () => {
+  it('does NOT register live edit mixin on the server even if liveEdit is true', async () => {
     const originalWindow = globalThis.window
     // @ts-expect-error simulate server-side by removing window
     delete globalThis.window
     setRuntimeConfig({ liveEdit: true })
 
     const { default: plugin } = await import('../src/runtime/flyo.plugin')
-    const vueApp = { use: vi.fn() }
+    const vueApp = { use: vi.fn(), mixin: vi.fn() }
     await plugin({ vueApp } as any)
 
+    expect(vueApp.mixin).not.toHaveBeenCalled()
     expect(useFlyoLiveEditMock).not.toHaveBeenCalled()
     // restore
     globalThis.window = originalWindow
+  })
+
+  it('does not emit Vue lifecycle warnings during plugin execution when liveEdit is enabled', async () => {
+    setRuntimeConfig({ liveEdit: true })
+    globalThis.window = globalThis.window || ({} as any)
+
+    useFlyoLiveEditMock.mockImplementation(() => {
+      // This mimics what Vue warns about when a hook composable is called outside setup.
+      console.warn('[Vue warn]: onMounted is called when there is no active component instance')
+      console.warn('[Vue warn]: onUnmounted is called when there is no active component instance')
+    })
+
+    const warningSpy = vi.spyOn(console, 'warn').mockImplementation(() => {})
+
+    const { default: plugin } = await import('../src/runtime/flyo.plugin')
+    const vueApp = { use: vi.fn(), mixin: vi.fn() }
+    await plugin({ vueApp } as any)
+
+    expect(useFlyoLiveEditMock).not.toHaveBeenCalled()
+
+    const warningText = warningSpy.mock.calls.map((args) => String(args[0] ?? '')).join('\n')
+    expect(warningText).not.toContain('onMounted is called when there is no active component instance')
+    expect(warningText).not.toContain('onUnmounted is called when there is no active component instance')
+
+    warningSpy.mockRestore()
   })
 })
 
