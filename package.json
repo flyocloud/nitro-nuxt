@@ -2,7 +2,10 @@
   "name": "@flyo/nitro-nuxt",
   "version": "2.0.0",
   "description": "Flyo Nitro Nuxt Module",
-  "repository": "git@github.com:flyocloud/nitro-nuxt.git",
+  "repository": {
+    "type": "git",
+    "url": "git+ssh://git@github.com/flyocloud/nitro-nuxt.git"
+  },
   "author": "Basil Suter <git@nadar.io>",
   "license": "MIT",
   "type": "module",
