@@ -92,7 +92,7 @@ describe('flyo nuxt module setup', () => {
       global: true,
       pathPrefix: false
     })
-    expect(nuxtKitMocks.optimizeDepsInclude).toContain('@flyo/nitro-js')
+    expect(nuxtKitMocks.optimizeDepsInclude).toContain('@flyo/nitro-vue3')
     expect(nuxt.options.runtimeConfig.public.flyo).toMatchObject({
       apiToken: 'token-123',
       apiBasePath: 'https://api.flyo.test',
@@ -113,11 +113,17 @@ describe('flyo nuxt module setup', () => {
     expect(nuxtFalse.options.runtimeConfig.public.flyo.liveEdit).toBe(false)
   })
 
-  it('adds @flyo/nitro-js to vite optimize dependencies', () => {
+  // The bridge is a nested dependency of @flyo/nitro-vue3 and no longer bundled into it,
+  // so it must be pre-bundled explicitly — otherwise Vite discovers it on the first client
+  // import and hard-reloads, which drops the live-edit connection in the preview iframe.
+  it('pre-bundles the flyo runtime packages including the nested js bridge', () => {
     const nuxt = createNuxt()
     moduleDefinitionInternal.setup(baseOptions, nuxt as never)
 
-    expect(nuxtKitMocks.optimizeDepsInclude).toContain('@flyo/nitro-js')
+    expect(nuxtKitMocks.optimizeDepsInclude).toEqual([
+      '@flyo/nitro-vue3',
+      '@flyo/nitro-vue3 > @flyo/nitro-js-bridge'
+    ])
   })
 
   it('adds ./runtime to transpile when liveEdit is enabled', () => {

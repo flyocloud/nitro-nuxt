@@ -55,8 +55,21 @@ export default defineNuxtModule<ModuleOptions>({
     addImportsDir(resolve(runtimeDir, 'composables'))
 
     extendViteConfig((config) => {
-      config.optimizeDeps?.include?.push(
-        ...['@flyo/nitro-js']
+      if (!config.optimizeDeps) {
+        config.optimizeDeps = {}
+      }
+      if (!config.optimizeDeps.include) {
+        config.optimizeDeps.include = []
+      }
+
+      // @flyo/nitro-js-bridge is a dependency of @flyo/nitro-vue3, not of the site, so it
+      // is declared in the nested form. Since nitro-vue3 2.4.0 the bridge is no longer
+      // bundled into that package and would otherwise be discovered lazily on the first
+      // client import — which makes Vite re-optimize and hard-reload the page, dropping the
+      // live-edit connection inside the Flyo preview iframe.
+      config.optimizeDeps.include.push(
+        '@flyo/nitro-vue3',
+        '@flyo/nitro-vue3 > @flyo/nitro-js-bridge'
       )
     })
 
