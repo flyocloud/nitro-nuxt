@@ -116,13 +116,15 @@ describe('flyo nuxt module setup', () => {
   // The bridge is a nested dependency of @flyo/nitro-vue3 and no longer bundled into it,
   // so it must be pre-bundled explicitly — otherwise Vite discovers it on the first client
   // import and hard-reloads, which drops the live-edit connection in the preview iframe.
-  it('pre-bundles the flyo runtime packages including the nested js bridge', () => {
+  // The typescript sdk is imported directly by useFlyoSearch and needs the same treatment.
+  it('pre-bundles the flyo runtime packages including the nested js bridge and the sdk', () => {
     const nuxt = createNuxt()
     moduleDefinitionInternal.setup(baseOptions, nuxt as never)
 
     expect(nuxtKitMocks.optimizeDepsInclude).toEqual([
       '@flyo/nitro-vue3',
-      '@flyo/nitro-vue3 > @flyo/nitro-js-bridge'
+      '@flyo/nitro-vue3 > @flyo/nitro-js-bridge',
+      '@flyo/nitro-typescript'
     ])
   })
 
