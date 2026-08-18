@@ -67,9 +67,13 @@ export default defineNuxtModule<ModuleOptions>({
       // bundled into that package and would otherwise be discovered lazily on the first
       // client import — which makes Vite re-optimize and hard-reload the page, dropping the
       // live-edit connection inside the Flyo preview iframe.
+      //
+      // @flyo/nitro-typescript is pulled in directly by the useFlyoSearch composable and is
+      // subject to the same lazy discovery, so it is pre-bundled alongside the others.
       config.optimizeDeps.include.push(
         '@flyo/nitro-vue3',
-        '@flyo/nitro-vue3 > @flyo/nitro-js-bridge'
+        '@flyo/nitro-vue3 > @flyo/nitro-js-bridge',
+        '@flyo/nitro-typescript'
       )
     })
 

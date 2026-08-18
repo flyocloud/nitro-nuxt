@@ -1,6 +1,6 @@
 # @flyo/nitro-nuxt
 
-Nuxt 3 module for integrating Flyo Nitro CMS into a Nuxt application.
+Nuxt 4 module for integrating Flyo Nitro CMS into a Nuxt application.
 
 ## What This Module Adds
 
@@ -11,7 +11,7 @@ Nuxt 3 module for integrating Flyo Nitro CMS into a Nuxt application.
 
 ## Requirements
 
-- Nuxt 3
+- Nuxt 4.3.1+
 - Node.js 18.12+ (Nuxt recommendation)
 - A valid Flyo API token
 
@@ -93,6 +93,7 @@ This module auto-imports these composables:
 - `useFlyoEntity(uniqueId)`
 - `useFlyoPage(slug)`
 - `useFlyoSitemap()`
+- `useFlyoSearch(query, options)`
 - `editable(block)` — returns `data-flyo-uid` attribute for live-edit support
 
 Example:
@@ -106,6 +107,79 @@ const { response: page } = await useFlyoCurrentPage()
 	<pre>{{ page }}</pre>
 </template>
 ```
+
+## Sitemap
+
+`useFlyoSitemap()` returns every page from the containers plus every mapped
+entity, including all language variants of a multi-lingual setup. Each item
+carries the two attributes a sitemap entry is built from:
+
+- `href` — the finished link. Internal paths come with a trailing slash
+	(`/about-me/`), mail links as `mailto:hello@flyo.ch`. Items without an `href`
+	have no reachable URL and must be skipped.
+- `updated_at` — a Unix timestamp of the last content change, meant for
+	`lastmod`. A rebuild that produces identical output does not move it.
+
+`routes` is the raw map of route identifiers behind that `href` (plus the system
+key `_empty`); reach for it only when you need a specific named route.
+
+```vue
+<script setup lang="ts">
+const { response } = await useFlyoSitemap()
+
+const urls = computed(() => (response.value ?? [])
+	.filter(item => item.href)
+	.map(item => ({
+		loc: new URL(item.href, 'https://example.com').href,
+		lastmod: new Date(item.updated_at * 1000).toISOString()
+	}))
+)
+</script>
+```
+
+The composable runs inside the Nuxt app, where the Flyo plugin has configured
+the SDK — it is not available in a Nitro `server/` route. To serve a
+`sitemap.xml`, render it from a page (or feed the entries above into a sitemap
+module such as `@nuxtjs/sitemap`).
+
+## Search
+
+`useFlyoSearch(query, options)` runs a full-text search across pages and
+entities, matching against titles and teasers. Results share the sitemap item
+shape, so a hit links through its `href` and carries an `updated_at` timestamp.
+
+```vue
+<script setup lang="ts">
+const query = ref('')
+const { response: hits } = await useFlyoSearch(query)
+</script>
+
+<template>
+	<input v-model="query">
+	<ul>
+		<li v-for="hit in hits" :key="hit.entity_unique_id">
+			<a :href="hit.href">{{ hit.entity_title }}</a>
+			<p>{{ hit.entity_teaser }}</p>
+		</li>
+	</ul>
+</template>
+```
+
+The query may be a plain string or a reactive source. A reactive query is
+watched, so the search re-runs whenever the term changes. The composable returns
+`{ response, error, refresh }` — the first run throws on failure like the other
+composables, a re-run triggered by the watched query reports through `error`.
+
+`options` are all optional:
+
+- `sort` — `score` (relevance, the default), `title`, `time_start` or
+	`updated_at`. Prefix with `-` to reverse, for example `-updated_at` for newest
+	first.
+- `page` — result page, starting at 1.
+- `lang` — language context, only relevant in multi-lingual setups.
+
+An empty query resolves to an empty list without hitting the API, so it is safe
+to bind straight to an input.
 
 ## Components Directory
 
