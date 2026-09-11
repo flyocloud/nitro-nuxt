@@ -269,27 +269,27 @@ npm run release:dry-run
 ---
 
 <details>
-<summary><strong>AI coding agent instructions — Next.js integration</strong></summary>
+<summary><strong>AI coding agent instructions — Nuxt integration</strong></summary>
 
-The file [ai-instructions-nextjs.md](ai-instructions-nextjs.md) contains a complete advisory for integrating Flyo Nitro CMS into an **existing Next.js App Router project** using `@flyo/nitro-next`.
+The file [ai-instructions-nuxt.md](ai-instructions-nuxt.md) contains a complete advisory for setting up Flyo Nitro CMS in a Nuxt project with `@flyo/nitro-nuxt`, both for a **new Nuxt 4 app** and for an **existing one**.
 
 It is written to be pasted directly into a coding agent (Claude, Copilot, Cursor, etc.) as a system prompt or task description.
 
 **Copy the raw instructions:**
 
-- GitHub raw URL: `https://raw.githubusercontent.com/flyocloud/nitro-nuxt/main/ai-instructions-nextjs.md`
-- Or open [ai-instructions-nextjs.md](ai-instructions-nextjs.md) and use the **Raw** button.
+- GitHub raw URL: `https://raw.githubusercontent.com/flyocloud/nitro-nuxt/main/ai-instructions-nuxt.md`
+- Or open [ai-instructions-nuxt.md](ai-instructions-nuxt.md) and use the **Raw** button.
 
 The advisory covers:
-- Package installation and `flyo.config.tsx` setup
-- Proxy cache handling
+- Scaffolding a new Nuxt 4 app and installing the module
+- Environment variables and `nuxt.config.ts` module options
+- The required `pages/cms.vue` and dynamic Flyo route registration
+- `TheHeader` and `TheFooter` components driven by Flyo containers
+- Block components in `~/flyo`, their props, slots and `editable(block)`
 - TypeScript type generation from the Flyo OpenAPI schema
-- Layout `Header` and `Footer` components driven by Flyo containers
-- Root layout integration with `FlyoProvider`
-- Catch-all `app/[[...slug]]/page.tsx` route
-- WYSIWYG and image helper components
+- WYSIWYG and Flyo CDN image helper components
 - A reusable Claude skill (`.claude/skills/flyo-blocks/SKILL.md`) for block generation
-- Sitemap support
-- A final validation checklist
+- Sitemap and search
+- A validation checklist and a troubleshooting table
 
 </details>
